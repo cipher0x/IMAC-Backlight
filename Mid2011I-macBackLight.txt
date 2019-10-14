@@ -1,0 +1,45 @@
+root@macdeb:/home/eric# ls /sys/class/backlight/
+acpi_video0  radeon_bl0
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0
+cat: /sys/class/backlight/acpi_video0: Is a directory
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0/
+actual_brightness  brightness         max_brightness     subsystem/         uevent             
+bl_power           device/            power/             type               
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0/max_brightness 
+15
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0/brightness 
+8
+root@macdeb:/home/eric# echo 15 >  /sys/class/backlight/acpi_video0/brightness 
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0/brightness 
+15
+root@macdeb:/home/eric# cat /sys/class/backlight/acpi_video0/actual_brightness 
+15
+root@macdeb:/home/eric# cat /sys/class/backlight/radeon_bl0/
+actual_brightness  brightness         max_brightness     subsystem/         uevent             
+bl_power           device/            power/             type               
+root@macdeb:/home/eric# cat /sys/class/backlight/radeon_bl0/max_brightness 
+255
+root@macdeb:/home/eric# cat /sys/class/backlight/radeon_bl0/brightness 
+33
+root@macdeb:/home/eric# echo 200 >  /sys/class/backlight/radeon_bl0/brightness 
+root@macdeb:/home/eric# echo 200 >  /sys/class/
+ata_device/     bsg/            firmware/       input/          net/            printer/        scsi_disk/      tty/
+ata_link/       devcoredump/    gpio/           iommu/          pci_bus/        ptp/            scsi_generic/   usbmisc/
+ata_port/       devfreq/        graphics/       leds/           phy/            pwm/            scsi_host/      vc/
+backlight/      dma/            hidraw/         mdio_bus/       powercap/       regulator/      sound/          video4linux/
+bdi/            dmi/            hwmon/          mei/            power_supply/   rfkill/         spidev/         vtconsole/
+block/          drm/            i2c-adapter/    mem/            ppdev/          rtc/            spi_master/     watchdog/
+bluetooth/      drm_dp_aux_dev/ ieee80211/      misc/           pps/            scsi_device/    thermal/        
+root@macdeb:/home/eric# 
+
+
+#first find baclight control in kernel interface
+ls /sys/class/backlight/
+acpi_video0  radeon_bl0
+
+#Get current and max value
+cat /sys/class/backlight/acpi_video0/max_brightness
+cat /sys/class/backlight/acpi_video0/brightness
+
+#Write new brightness to bightness data strucutre
+echo "255" >  /sys/class/backlight/acpi_video0/brightness
